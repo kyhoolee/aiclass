@@ -100,9 +100,3 @@ class TextFileDataset(object):
     def load(self, filename):
         self.source_file = filename
         self.reset()
-
-
-if __name__ == "__main__":
-    data = RecommendedWords()
-    data.load()
-    print(data.text(data.target[0]))
