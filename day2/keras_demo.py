@@ -3,6 +3,7 @@ import os
 from sklearn.datasets import load_iris, load_digits
 from sklearn.model_selection import train_test_split
 
+from keras import regularizers
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.optimizers import Adam
@@ -21,10 +22,10 @@ if __name__ == "__main__":
 
     classifier = Sequential()
     classifier.add(Dense(10, input_dim=X.shape[1], activation="relu"))
-    classifier.add(Dense(5, activation="relu"))
+    classifier.add(LSTM(5, activation="relu"))
     classifier.add(Dense(np.max(Y) + 1, activation="softmax"))
-    # optimizer = Adam(lr=0.01, decay=0.01)
-    classifier.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
+    optimizer = Adam(lr=0.01, decay=0.01)
+    classifier.compile(optimizer=optimizer, loss="sparse_categorical_crossentropy", metrics=["accuracy"])
 
     classifier.fit(X_train, Y_train, batch_size=8, epochs=10, verbose=True)
     Y_result = classifier.predict_classes(X_test)

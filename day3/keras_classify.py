@@ -6,7 +6,7 @@ import numpy as np
 import dataset
 from trainer import Model
 
-from keras.layers import Dropout, Dense, Conv1D, MaxPooling1D, Flatten, Embedding, LSTM
+from keras.layers import Dropout, Dense, Conv1D, MaxPooling1D, Flatten, Embedding, LSTM, Bidirectional
 from keras.models import Sequential
 
 
@@ -55,6 +55,7 @@ def run():
 
     train_set = dataset.TextFileDataset()
     train_set.load_vocab(train_file, 5000)
+    train_set.input_length = 30
     train_set.save_vocab(vocab_file)
     train_set.load(train_file)
     test_set = dataset.TextFileDataset()

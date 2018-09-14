@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     classifier = LogisticRegression(x_train.shape[1])
     for i in range(20):
-        classifier.train(x_train, y_train, iters=2, lr=1e-5)
+        classifier.train(x_train, y_train, iters=2, lr=1e-9)
         classifier.evaluate(x_test, y_test)
 
 
