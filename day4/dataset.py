@@ -1,8 +1,4 @@
-import numpy as np
-import codecs
 from collections import Counter, defaultdict
-from sklearn.model_selection import train_test_split
-import pickle
 import numpy as np
 
 
@@ -40,11 +36,13 @@ class BowFileDataset(object):
 
     def load(self, filename):
         result = []
+        text = []
         with open(filename, "r", encoding="utf-8") as source:
             for line in source:
+                text.append(line)
                 words = line.strip().split()
                 result.append(self.process_line(words))
-        return result
+        return result, text
 
 
 class TfidfFileDataset(BowFileDataset):
